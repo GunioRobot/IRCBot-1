@@ -177,7 +177,6 @@ public class ShoutHandler implements Runnable {
 	}
 	
 	// Method to convert a date into a more readable time format.
-	// TODO: Consider using an imprecise 'about X hours ago' format.
 	private String toReadableTime(Date date) {
 		// Calculate the difference in seconds between the quote's submission and now
 		long diffInSeconds = (new Date().getTime() - date.getTime()) / 1000;
@@ -191,7 +190,7 @@ public class ShoutHandler implements Runnable {
 	    
 	    // Build the readable format string
 	    if(diff[0] != 0) return String.format("about %d day%s ago", diff[0], diff[0] > 1 ? "s" : "");
-	    if(diff[1] != 0) return String.format("about %d hour%s ago", diff[1], diff[1] > 1 ? "s" : "");
+	    if(diff[1] != 0) return String.format("about %s%s hour%s ago", diff[1] > 1 ? "" : "an", diff[1] > 1 ? String.valueOf(diff[1]) : "", diff[1] > 1 ? "s" : "");
 	    if(diff[2] != 0) return String.format("about %d minute%s ago", diff[2], diff[2] > 1 ? "s" : "");
 	    if(diff[3] != 0) return "just a moment ago";
 	    else return "an unknown time ago";
