@@ -48,7 +48,7 @@ public class FortuneHandler implements Runnable {
 	// Method to parse and return a fortune
 	private String parseFortune(String message) {
 		// Split the message with the delimiter 'or'
-		String[] splitMessage = message.split("or");
+		String[] splitMessage = message.split("\\s+or\\s+");
 		// If the length of the new array is 1, we assume the user only wants a Yes/No response
 		if(splitMessage.length == 1) {
 			// Generate a random number and use it to return the fortune
