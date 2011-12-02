@@ -47,6 +47,10 @@ public class IRCBotHandlers extends ListenerAdapter {
 			new Thread(new ShoutHandler(event)).start();
 			return;
 		}
+		if(event.getMessage().substring(0, 7).equals("!decide")) {
+			new Thread(new FortuneHandler(event)).start();
+			return;
+		}
 		// Split the message using a space delimiter and attempt to form a URL from each split string
 		// If a MalformedURLException is thrown, the string isn't a valid URL and continue on
 		// If a URL can be formed from it, spawn a new thread to process it for a title
