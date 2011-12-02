@@ -1,0 +1,50 @@
+IRCBot
+======
+
+Description
+-----------
+
+IRCBot is a custom IRC bot written in Java to support the RDDT IRC Network.
+
+Features
+--------
+
+### Automatic URL scraping
+
+IRCBot is capable of detecting URLs in messages sent to IRC channels. Upon detection of URLs, it automatically downloads the first 8192 bytes of the URL and parses it for the HTML title element, which it helpfully sends to the channel. If the link is not an HTML document, it returns the content type and content length properties instead.
+
+`23:00 <~got_milk> http://www.reddit.com
+23:00 <&actnotok> [URL by 'got_milk'] reddit: the front page of the internet`
+
+`22:42 <+burr> http://i.imgur.com/nMVYX.png
+22:42 <&actnotok> [URL by 'burr'] Type: image/png, length: 337.9 kB`
+
+### Custom votekick system
+
+IRCBot is capable of allowing users to call votekicks against other users without operator intervention. Vote sessions last up to 60 seconds and require 40% of the channel to vote to pass.
+
+`23:09 <&actnotok> got_milk has voted to kick PhreeWilly! Type !votekick 
+                  PhreeWilly to cast a vote. (5 needed)
+23:09 <&edgesmash> !votekick PhreeWilly 
+23:09 <&actnotok> edgesmash has voted to kick PhreeWilly! (4 needed)
+23:09 <&edgesmash> !votekick PhreeWilly 
+23:09 <&actnotok> edgesmash: You cannot vote more than once!`
+
+### Fortune commands
+
+Users are able to 'ask' IRCBot to make decisions for them (chosen purely randomly by the bot). The bot will respond in accordance to the decision given.
+
+`23:10 <~got_milk> !decide herp or derp
+23:10 <&actnotok> got_milk: herp`
+
+`23:15 <~got_milk> !decide should I herp?
+23:15 <&actnotok> got_milk: No`
+
+### Shout mechanism
+
+If a user shouts in a channel (uppercase text greater than 5 characters) IRCBot will take notice and store the "quote" in a database, while selecting a quote at random to shout back at the user. Users are able to query the bot which can provide the quote submitter and when the quote was added to the database.
+
+`23:15 <+PhreeWilly> THE ONE AND ONLY!
+23:15 <&actnotok> OHISHOULDHAVEYELLEDMORESORRY
+23:17 <~got_milk> !who last
+23:17 <&actnotok> got_milk: Sunoiki shouted "OHISHOULDHAVEYEL..." about 4 hours ago.`
