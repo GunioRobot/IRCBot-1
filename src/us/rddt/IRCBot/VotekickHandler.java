@@ -65,7 +65,7 @@ public class VotekickHandler implements Runnable {
 			event.getBot().sendMessage(event.getChannel(), event.getUser().getNick() + " has voted to kick " + votekickUser + "! Type !votekick " + votekickUser + " to cast a vote. (" + requiredVotes + " needed)");
 			// Sleep for a certain period of time.
 			try {
-				Thread.sleep(30000);
+				Thread.sleep(60000);
 			} catch (InterruptedException ex) {
 				ex.printStackTrace();
 			}
@@ -86,6 +86,8 @@ public class VotekickHandler implements Runnable {
 			requiredVotes--;
 			// Announce the vote to kick
 			event.getBot().sendMessage(event.getChannel(), event.getUser().getNick() + " has voted to kick " + votekickUser + "! (" + requiredVotes + " needed)");
+			// Add the user to the voted list
+			votedUsers.add(event.getUser().getNick());
 			// If we don't need any more votes to pass, kick the user and reset the system
 			if(requiredVotes == 0) {
 				event.getBot().sendMessage(event.getChannel(), "Vote succeeded - kicking " + votekickUser + "!");
